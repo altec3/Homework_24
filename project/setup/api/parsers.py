@@ -4,14 +4,14 @@ input_query: RequestParser = RequestParser()
 input_query.add_argument(name='file_name', type=str, location='json', required=True, nullable=False)
 input_query.add_argument(
     name='cmd1',
-    choices=('filter', 'map', 'unique', 'sort', 'limit'),
+    choices=('filter', 'map', 'unique', 'sort', 'limit', 'regex'),
     location='json',
     required=True,
     nullable=False
 )
 input_query.add_argument(
     name='cmd2',
-    choices=('filter', 'map', 'unique', 'sort', 'limit'),
+    choices=('filter', 'map', 'unique', 'sort', 'limit', 'regex'),
     location='json',
     required=True,
     nullable=False

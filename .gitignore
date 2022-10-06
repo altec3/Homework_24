@@ -4,5 +4,6 @@ logs/
 .*_cache/
 .pytest_cache/
 __pycache__
+.mypy_cache/
 *.db
 .coverage

@@ -1,4 +1,5 @@
 import os
+from typing import Dict
 
 from project.helpers.commands import Commands
 from project.helpers.utils import load_file, parse_request
@@ -7,9 +8,9 @@ from project.setup.app.config import config
 
 class IndexService(Commands):
 
-    def get_result(self, payload: dict) -> list | bool:
+    def get_result(self, payload: Dict[str, str]) -> list | bool:
         request = parse_request(payload)
-        path = os.path.join(config.DATA_DIR, payload.get("file_name"))
+        path = os.path.join(config.DATA_DIR, payload["file_name"])
         try:
             file = load_file(path).split("\n")
         except OSError:
@@ -36,10 +37,12 @@ class IndexService(Commands):
                         result = self.apply_limit(items_count=items_count, file=result or file)
                     except ValueError:
                         return False
+                case "regex":
+                    result = self.apply_regex(pattern=item[1], file=result or file)
                 case _:
                     continue
 
-        return list(result)
+        return result
 
 
 if __name__ == "__main__":
