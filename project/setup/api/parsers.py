@@ -1,17 +1,19 @@
 from flask_restx.reqparse import RequestParser
 
+from project.setup.app.config import config
+
 input_query: RequestParser = RequestParser()
 input_query.add_argument(name='file_name', type=str, location='json', required=True, nullable=False)
 input_query.add_argument(
     name='cmd1',
-    choices=('filter', 'map', 'unique', 'sort', 'limit', 'regex'),
+    choices=config.COMMANDS,
     location='json',
     required=True,
     nullable=False
 )
 input_query.add_argument(
     name='cmd2',
-    choices=('filter', 'map', 'unique', 'sort', 'limit', 'regex'),
+    choices=config.COMMANDS,
     location='json',
     required=True,
     nullable=False
