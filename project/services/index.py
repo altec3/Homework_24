@@ -1,5 +1,5 @@
 import os
-from typing import Dict
+from typing import Dict, List, Optional
 
 from project.helpers.commands import Commands
 from project.helpers.utils import load_file, parse_request
@@ -8,13 +8,15 @@ from project.setup.app.config import config
 
 class IndexService(Commands):
 
-    def get_result(self, payload: Dict[str, str]) -> list | bool:
-        request = parse_request(payload)
-        path = os.path.join(config.DATA_DIR, payload["file_name"])
+    def get_result(self, payload: Dict[str, str]) -> Optional[List[str]]:
+
+        request: List[tuple] = parse_request(payload)
+        path: str = os.path.join(config.DATA_DIR, payload["file_name"])
+
         try:
-            file = load_file(path).split("\n")
+            file: List[str] = load_file(path).split("\n")
         except OSError:
-            return False
+            return None
 
         result = None
         for item in request:
@@ -26,7 +28,7 @@ class IndexService(Commands):
                         column = int(item[1])
                         result = self.apply_map(column=column, file=result or file)
                     except ValueError:
-                        return False
+                        return None
                 case "unique":
                     result = self.apply_unique(data=result or file)
                 case "sort":
@@ -36,7 +38,7 @@ class IndexService(Commands):
                         items_count = int(item[1])
                         result = self.apply_limit(items_count=items_count, file=result or file)
                     except ValueError:
-                        return False
+                        return None
                 case "regex":
                     result = self.apply_regex(pattern=item[1], file=result or file)
                 case _:

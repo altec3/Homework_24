@@ -1,3 +1,6 @@
+from typing import List, Dict
+
+
 def load_file(file: str) -> str:
     """Загружает данные из файла"""
 
@@ -5,7 +8,7 @@ def load_file(file: str) -> str:
         return f.read()
 
 
-def parse_request(request: dict) -> list[tuple]:
+def parse_request(request: Dict[str, str]) -> List[tuple]:
     """Разбивает запрос на список кортежей: команда, значение"""
 
     commands = {key: request.get(key) for key in sorted(request) if key.count("cmd")}
