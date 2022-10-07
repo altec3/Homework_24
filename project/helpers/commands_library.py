@@ -18,7 +18,7 @@ class CommandsLibrary:
         return list(map(lambda item: item.split(" ")[param], data))
 
     @staticmethod
-    def get_unique(data: List[str], *args) -> List[str]:
+    def get_unique(data: List[str], *args, **kwargs) -> List[str]:
         unique = set(data)
         return list(unique)
 
