@@ -1,8 +1,8 @@
 from flask_restx import Namespace, Resource
 from flask import jsonify
 
-from project.container import index_service
-from project.setup.api.parsers import input_query
+from server.container import index_service
+from server.setup.api.parsers import input_query
 
 api = Namespace('/')
 

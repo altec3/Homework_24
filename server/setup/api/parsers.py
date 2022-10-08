@@ -1,6 +1,6 @@
 from flask_restx.reqparse import RequestParser
 
-from project.setup.app.config import config
+from server.setup.app.config import config
 
 input_query: RequestParser = RequestParser()
 input_query.add_argument(name='file_name', type=str, location='json', required=True, nullable=False)

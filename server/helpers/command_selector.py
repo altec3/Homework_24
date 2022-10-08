@@ -1,4 +1,4 @@
-from project.helpers.commands_library import CommandsLibrary
+from server.helpers.commands_library import CommandsLibrary
 
 
 class CommandSelector:

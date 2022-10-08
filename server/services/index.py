@@ -1,9 +1,9 @@
 import os
 from typing import Dict, List, Optional
 
-from project.helpers.command_selector import CommandSelector
-from project.helpers.utils import load_file, parse_request
-from project.setup.app.config import config
+from server.helpers.command_selector import CommandSelector
+from server.helpers.utils import load_file, parse_request
+from server.setup.app.config import config
 
 
 class IndexService:
