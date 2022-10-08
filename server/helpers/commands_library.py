@@ -12,10 +12,13 @@ class CommandsLibrary:
     def get_map(param: Union[int, str], data: List[str]) -> Optional[List[str]]:
         if not isinstance(param, int):
             try:
-                param = int(param)
+                int_param = int(param)
             except ValueError:
                 return None
-        return list(map(lambda item: item.split(" ")[param], data))
+        else:
+            int_param = param
+
+        return list(map(lambda item: item.split(" ")[int_param], data))
 
     @staticmethod
     def get_unique(data: List[str], *args, **kwargs) -> List[str]:
